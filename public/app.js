@@ -8,6 +8,10 @@ var init = function () {
 
 var populate = function (todos) {
   // this function needs to:
+  var todosArray = JSON.parse(localStorage.getItem('todoList')) || [];
+  for(item of todosArray) {
+    addItem(item);
+  }
   // - loop through the array of todos, invoking addItem() for each todo item
 }
 
@@ -36,7 +40,8 @@ var save = function (newItem) {
   // this function needs to:
 
   var  jsonString = localStorage.getItem('todoList');
-  var savedList = JSON.parse(jsonString);
+  var savedList = JSON.parse(jsonString) || [];
+
 
   savedList.unshift(newItem);
   var jsonArrayString = JSON.stringify(savedList);
