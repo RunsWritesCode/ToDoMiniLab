@@ -25,6 +25,7 @@ var handleButtonClick = function () {
   // this function needs to:
     var newItem = document.getElementById("new-item").value;
     addItem(newItem);
+    save(newItem);
 
   // - get hold of the input box's value
   // - append it to the "todo-list" ul by invoking addItem()
@@ -33,6 +34,17 @@ var handleButtonClick = function () {
 
 var save = function (newItem) {
   // this function needs to:
+
+  var  jsonString = localStorage.getItem('todoList');
+  var savedList = JSON.parse(jsonString);
+
+  savedList.unshift(newItem);
+  var jsonArrayString = JSON.stringify(savedList);
+  localStorage.setItem('todoList', jsonArrayString);
+
+
+
+
   // - get the data back from local storage and parse to an array
   // - add the newItem to the array
   // - stringify the updated array
